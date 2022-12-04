@@ -19,31 +19,30 @@
 #include <dt-bindings/zmk/backlight.h>
 
 / {
-  behaviors {
-    #include "macros.dtsi"
+    behaviors {
+        #include "macros.dtsi"
 
-    hm: homerow_mods {
-        compatible = "zmk,behavior-hold-tap";
-        label = "HOMEROW_MODS";
-        #binding-cells = <2>;
-        tapping-term-ms = <200>;
-        quick_tap_ms = <175>;
-        flavor = "tap-preferred";
-        bindings = <&kp>, <&kp>;
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick_tap_ms = <175>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
     };
-  };
 
     keymap {
         compatible = "zmk,keymap";
-
 
         default_layer {
             bindings = <
      &kp EQUAL  &kp N1  &kp N2    &kp N3     &kp N4     &kp N5                 &none         &none     &kp N6     &kp N7     &kp N8    &kp N9    &kp N0  &kp MINUS
        &kp TAB   &kp Q   &kp W     &kp F      &kp P      &kp B                 &none         &none      &kp J      &kp L      &kp U     &kp Y  &kp SEMI   &kp BSLH
  &kp BACKSPACE   &kp A   &kp R     &kp S      &kp T      &kp G                 &none         &none      &none                           &none     &none      &none   &kp M   &kp N      &kp E    &kp I     &kp O    &kp SQT
-     &kp LSHFT   &kp Z   &kp X     &kp C      &kp D      &kp V                 &none         &none   &kp LGUI      &none      &none  &kp LGUI     &none      &none   &kp K   &kp H  &kp COMMA  &kp DOT  &kp FSLH  &kp RSHFT
-         &mo 2   &none   &none  &kp LEFT  &kp RIGHT  &kp LCTRL            &kp ESCAPE  &kp LEFT_ALT  &kp RCTRL  &kp ENTER  &kp SPACE  &kp DOWN    &kp UP      &none   &none   &none
+     &kp LSHFT   &kp Z   &kp X     &kp C      &kp D      &kp V                 &none         &none   &kp LMETA      &none      &none  &kp LMETA     &none      &none   &kp K   &kp H  &kp COMMA  &kp DOT  &kp FSLH  &kp RSHFT
+         &mo 2   &none   &none  &kp LEFT  &kp RIGHT  &kp LCTRL            &kp ESCAPE  &kp LEFT_ALT  &kp RCTRL  &kp ENTER  &kp SPACE  &kp DOWN    &kp UP      &none   &none   &kp &none
             >;
         };
 
@@ -51,7 +50,7 @@
             bindings = <
  &kp EQUAL     &kp N1    &kp N2    &kp N3     &kp N4    &kp N5             &trans      &mo 3     &kp N6  &kp KP_NUM  &kp KP_EQUAL  &kp KP_DIVIDE  &kp KP_MULTIPLY   &kp MINUS
    &kp TAB      &kp Q     &kp W     &kp E      &kp R     &kp T              &none      &none      &kp Y   &kp KP_N7     &kp KP_N8      &kp KP_N9     &kp KP_MINUS    &kp BSLH
-   &kp ESC      &kp A     &kp S     &kp D      &kp F     &kp G              &none  &kp LCTRL   &kp LALT                                 &kp LGUI        &kp RCTRL       &none     &kp H  &kp KP_N4  &kp KP_N5  &kp KP_N6   &kp KP_PLUS    &kp SQT
+   &kp ESC      &kp A     &kp S     &kp D      &kp F     &kp G              &none  &kp LCTRL   &kp LALT                                 &kp LMETA        &kp RCTRL       &none     &kp H  &kp KP_N4  &kp KP_N5  &kp KP_N6   &kp KP_PLUS    &kp SQT
  &kp LSHFT      &kp Z     &kp X     &kp C      &kp V     &kp B              &none      &none   &kp HOME       &none         &none      &kp PG_UP            &none       &none     &kp N  &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp KP_ENTER  &kp RSHFT
      &mo 2  &kp GRAVE  &kp CAPS  &kp LEFT  &kp RIGHT  &kp BSPC            &kp DEL    &kp END  &kp PG_DN   &kp ENTER     &kp KP_N0         &kp UP         &kp DOWN  &kp KP_DOT  &kp RBKT      &mo 2
             >;
@@ -77,5 +76,15 @@
             >;
         };
 
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        combo_esc {
+            timeout-ms = <20>;
+            key-positions = <41 42> // n + e;
+            bindings = <&kp ESC>;
+        };
     };
 };
