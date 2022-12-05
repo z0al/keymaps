@@ -83,7 +83,7 @@
 
         combo_esc {
             timeout-ms = <20>;
-            key-positions = <41 42> // n + e;
+            key-positions = <41 42>; // n + e
             bindings = <&kp ESC>;
         };
     };
